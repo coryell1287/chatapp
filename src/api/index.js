@@ -1,30 +1,31 @@
 import axios from 'axios';
 
-let host = 'localhost:4000/rest/';
+let host = 'http://localhost:4000/rest';
 
-async function httpRequest(method, url, payload, config) {
+async function httpRequest(method, url, config) {
   try {
-    const { data } = await axios[method](url, payload, config);
-    return await dispatch(config[onSuccess](data));
+    const { data } = await axios[method](url, config);
+    console.log(data, 'Here is the results of data');
+    return await config[onSuccess](data);
   } catch (err) {
-    return dispatch(config[onFail]());
+    return config[onError](err);
   }
 }
 
 export const get = (basePath, config) => {
-  return httpRequest('GET', `${host}${basePath}`, config);
+  return httpRequest('get', `${host}${basePath}`, config);
 };
 
 export const post = (basePath, request, config) => {
-  return httpRequest('POST', `${host}${basePath}`, request, config);
+  return httpRequest('post', `${host}${basePath}`, request, config);
 };
 
 export const remove = (basePath, request, config) => {
-  return httpRequest('DELETE', `${host}${basePath}`, request, config);
+  return httpRequest('delete', `${host}${basePath}`, request, config);
 };
 
 export const put = (basePath, request, config) => {
-  return httpRequest('PUT', `${host}${basePath}`, request, config);
+  return httpRequest('put', `${host}${basePath}`, request, config);
 };
 
 export const patch = (basePath, request, config) => {

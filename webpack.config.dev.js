@@ -36,13 +36,14 @@ module.exports = {
     rules: [{
       use: 'babel-loader',
       test: /\.jsx?$/,
+      include: [path.resolve(__dirname, './src')]
     }, {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: 'css-loader'
       }),
-    },{
+    }, {
       test: /\.(jpe?g|png|gif|svg)$/,
       use: [{
         loader: 'url-loader',
