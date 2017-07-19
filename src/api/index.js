@@ -6,9 +6,9 @@ async function httpRequest(method, url, config) {
   try {
     const { data } = await axios[method](url, config);
     console.log(data, 'Here is the results of data');
-    return await config[onSuccess](data);
+    return config['onSuccess'](data);
   } catch (err) {
-    return config[onError](err);
+    return config['onError'](err.message);
   }
 }
 
