@@ -6,6 +6,7 @@ let host = 'http://localhost:4000/rest';
 
 async function httpRequest(method, url, config) {
   try {
+    dispatch({ type: 'START_FETCHING' });
     const { data } = await axios[method](url, config);
     return await dispatch(config["onSuccess"](data));
   } catch (err) {

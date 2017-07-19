@@ -18,7 +18,7 @@ export const asyncGet = () => dispatch => {
 };
 
 
-export const completeFetchSuccessfully = (message) =>{
+export const completeFetchSuccessfully = message => {
   return {
     type: 'SUCCESSUFLLY_FETCHED_DATA',
     payload: {
@@ -27,9 +27,23 @@ export const completeFetchSuccessfully = (message) =>{
   }
 };
 
-export const failedToCompleteFetch = (err) =>{
+export const failedToCompleteFetch = message => {
   return {
     type: 'FAILED_TO_RETRIEVE_DATA',
-    err: err.message,
+    err: message,
+  }
+};
+
+export const loadFetchIndicator = () => {
+  return {
+    type: 'START_FETCHING',
+    isFetching: true,
+  }
+};
+
+export const cancelFetchIndicator = () => {
+  return {
+    type: 'STOP_FETCHING',
+    isFetching: false,
   }
 };

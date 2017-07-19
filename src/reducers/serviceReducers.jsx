@@ -12,7 +12,19 @@ const serviceTestReducer = (state = '', action) => {
   }
 };
 
+const progressIndicator = (state = false, action) => {
+  switch (action.type) {
+    case 'START_FETCHING':
+      return true;
+    case 'STOP_FETCHING':
+      return false;
+    default:
+      return state;
+  }
+};
+
 
 export default combineReducers({
   serviceTestReducer,
+  progressIndicator,
 });

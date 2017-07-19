@@ -5,20 +5,28 @@ import { mapDispatchToProps, mapStateToProps } from 'containers/propConfig';
 
 class Application extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     const { asyncGet } = this.props;
     asyncGet();
   }
 
 
   render() {
-    // const { testService: { serviceTestReducer } } = this.props;
-    console.log(this.props, 'this is the value of the props');
+    const { fetchState } = this.props;
+    console.log(this.props.fetchState, 'this is the value of the props');
     return (
       <div>
-        <h1>Service test</h1>
-        <div><span></span></div>
+        {
+          fetchState
+            ?
+            'Loading...'
+            :
+            <div>
+              <h1>Service test</h1>
+              <div><span></span></div>
 
+            </div>
+        }
       </div>
     )
   }
