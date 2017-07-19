@@ -8,6 +8,7 @@ async function httpRequest(method, url, config) {
   try {
     dispatch({ type: 'START_FETCHING' });
     const { data } = await axios[method](url, config);
+    data !== 'undefined' && dispatch({ type: 'STOP_FETCHING' });
     return await dispatch(config["onSuccess"](data));
   } catch (err) {
     return await dispatch(config["onError"](err));

@@ -12,7 +12,7 @@ class Application extends Component {
 
 
   render() {
-    const { fetchState } = this.props;
+    const { fetchState, serviceState } = this.props;
     console.log(this.props.fetchState, 'this is the value of the props');
     return (
       <div>
@@ -23,8 +23,9 @@ class Application extends Component {
             :
             <div>
               <h1>Service test</h1>
-              <div><span></span></div>
-
+              <div>
+                <span>{serviceState}</span>
+              </div>
             </div>
         }
       </div>
