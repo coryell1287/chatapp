@@ -1,6 +1,6 @@
 import { get, post } from 'api';
 
-export const asyncGet = () => dispatch => {
+export const asyncGet = () => (dispatch) => {
   const config = {
     url: '/',
     timeout: 4000,
@@ -13,8 +13,12 @@ export const asyncGet = () => dispatch => {
     }
   };
 
-  dispatch(get(config.url, config));
-
+  get(config.url, config, 'get').then((data) => {
+    if(data.err) {
+      return dispatch(failedToCompleteFetch(data));
+    }
+    dispatch(completeFetchSuccessfully(data));
+  });
 };
 
 
@@ -24,12 +28,13 @@ export const completeFetchSuccessfully = (message) =>{
     payload: {
       data: message,
     }
-  }
+  };
 };
 
 export const failedToCompleteFetch = (err) =>{
+  console.log(err);
   return {
     type: 'FAILED_TO_RETRIEVE_DATA',
-    err: err.message,
-  }
+    err: err.err || err || 'Internal Error',
+  };
 };
