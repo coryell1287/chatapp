@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon lib/server.js --exec babel-node --presets env,stage-2",
+    "service": "nodemon lib/server.js --exec babel-node --presets env,stage-2",
     "build": "npm run clean && npm run build:webpack",
     "clean": "rimraf dist",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",

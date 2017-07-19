@@ -3,7 +3,7 @@ import * as action from 'actions';
 
 export function mapStateToProps(state) {
   return {
-    testService: state.serviceTest,
+    serviceState: state.serviceState.serviceTestReducer,
   }
 }
 

@@ -1,14 +1,15 @@
 import axios from 'axios';
+import { store } from 'store/configureStore';
 
+const { dispatch } = store;
 let host = 'http://localhost:4000/rest';
 
 async function httpRequest(method, url, config) {
   try {
     const { data } = await axios[method](url, config);
-    console.log(data, 'Here is the results of data');
-    return await config[onSuccess](data);
+    return await dispatch(config["onSuccess"](data));
   } catch (err) {
-    return config[onError](err);
+    return await dispatch(config["onError"](err));
   }
 }
 
@@ -29,5 +30,5 @@ export const put = (basePath, request, config) => {
 };
 
 export const patch = (basePath, request, config) => {
-  return httpRequest('PATCH', `${host}${basePath}`, request, config);
+  return httpRequest('patch', `${host}${basePath}`, request, config);
 };
