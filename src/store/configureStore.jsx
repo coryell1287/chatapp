@@ -4,6 +4,7 @@ import createHistory from 'history/createBrowserHistory';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reducers from 'reducers';
+import asyncAwait from 'redux-async-await';
 
 const middleware = [thunk];
 
@@ -14,10 +15,11 @@ if (process.env.NODE_ENV !== 'production') {
 const enhancers = compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
+
 export const store = createStore(
     reducers,
     enhancers,
-    applyMiddleware(...middleware)
+    applyMiddleware(...middleware, asyncAwait)
 );
 
 if (module.hot) {

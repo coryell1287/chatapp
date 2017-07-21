@@ -27,10 +27,10 @@ export const completeFetchSuccessfully = message => {
   }
 };
 
-export const failedToCompleteFetch = message => {
+export const failedToCompleteFetch = err => {
   return {
     type: 'FAILED_TO_RETRIEVE_DATA',
-    err: message,
+    err: err.message,
   }
 };
 

@@ -5,7 +5,7 @@ import { mapDispatchToProps, mapStateToProps } from 'containers/propConfig';
 
 class Application extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { asyncGet } = this.props;
     asyncGet();
   }
@@ -16,18 +16,12 @@ class Application extends Component {
     console.log(this.props.fetchState, 'this is the value of the props');
     return (
       <div>
-        {
-          fetchState
-            ?
-            'Loading...'
-            :
-            <div>
-              <h1>Service test</h1>
-              <div>
-                <span>{serviceState}</span>
-              </div>
-            </div>
-        }
+        <div>
+          <h1>Service test</h1>
+          <div>
+            <span>{serviceState}</span>
+          </div>
+        </div>
       </div>
     )
   }
